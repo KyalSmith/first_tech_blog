@@ -1,0 +1,42 @@
+{% extends 'blog_content/base.html' %}
+
+
+{% block Title_Block %}User Articles:{% endblock %}
+
+{% block Body_Block %}
+
+
+    <div class="col-md-6 col-md-offset-3"><h2 style="text-align:center">News Articles:</h2><hr></div>
+    {% for article in news %}
+
+        <div class="col-md-6 col-md-offset-3 jumbotron list_tuts">
+        <h2><a href="{% url 'blog_content:update_news' pk=article.pk %}">{{article.Title}}</a></h2><br>
+
+        <h3>{{article.description}}</h3><br>
+        <p>Date Published: {{article.date_created}}</p>
+        <p>Author: {{article.author}}</p>
+        </div>
+
+    {% endfor %}
+
+
+  </br></br>
+
+
+    <div class="col-md-6 col-md-offset-3"><h2 style="text-align:center">Tutorial Articles:</h2><hr></div>
+    {% for article in tuts %}
+
+        <div class="col-md-6 col-md-offset-3 jumbotron list_tuts">
+        <h2><a href="{% url 'blog_content:update_tut' pk=article.pk %}">{{article.Title}}</a></h2><br>
+
+        <h3>{{article.description}}</h3><br>
+        <p>Date Published: {{article.date_created}}</p>
+        <p>Author: {{article.author}}</p>
+        </div>
+
+    {% endfor %}
+
+
+
+{% endblock %}
+<!--<div style="float:left;position:fixed"></div><img style="width:50%;height:auto;" src="/media/images/linux.png">-->

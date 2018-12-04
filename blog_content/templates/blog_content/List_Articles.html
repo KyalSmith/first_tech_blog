@@ -1,0 +1,19 @@
+{% extends 'blog_content/base.html' %}
+{% load static %}
+
+{% block Title_Block %}Latest News{% endblock %}
+
+{% block Body_Block %}
+    <div style="float:center;position:fixed"><img style="width:50%;height:auto;" src="/media/images/news.jpg"></div>
+    <h3 style="text-align:center">Lastest News:</h3>
+    {% for article in object_list %}
+        <div class="col-sm-6 col-sm-offset-3 jumbotron list_tuts">
+        <h2><a href="{% url 'blog_content:news_detail' pk=article.pk %}">{{article.Title}}</a></h2><br>
+
+        <h3>{{article.description}}</h3><br>
+        <p>Date Published: {{article.date_created}}</p>
+        <p>Author: {{article.author}}</p>
+        </div>
+    {% endfor %}
+
+{% endblock %}

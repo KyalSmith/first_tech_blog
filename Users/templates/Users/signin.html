@@ -1,0 +1,27 @@
+{% extends 'Users/base.html' %}
+
+
+{% block Title_Block %}Sign In{% endblock %}
+
+{% block Body_Block %}
+<div class="col-md-4 col-md-offset-4 jumbotron" style="text-align:center">
+
+    {% if message %}
+    <h4>{{message}}</h4>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <h1>You are Signed In!</h1>
+    {% else %}
+            <h1> Login </h1><br><br>
+          <form method="post">
+            {% csrf_token %}
+             <label for="username">Username: </label>
+              <input type="text" name="username" placeholder="Please Enter Username here"><br><br>
+              <label for="password">Password: </label>
+              <input type="password" name="password" placeholder="Please Enter Password here"><br><br>
+            <input type="submit" value="Login" class="btn btn-default">
+          </form>
+
+    {% endif %}
+</div>
+{% endblock %}

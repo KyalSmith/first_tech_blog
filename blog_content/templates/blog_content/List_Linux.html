@@ -1,0 +1,19 @@
+{% extends 'blog_content/base.html' %}
+
+
+{% block Title_Block %}Linux Tuts{% endblock %}
+
+{% block Body_Block %}
+    <div style="float:left;position:fixed"><img style="width:50%;height:auto;" src="/media/images/linux.png"></div>
+
+    {% for article in object_list %}
+        <div class="col-md-6 col-md-offset-3 jumbotron list_tuts">
+        <h2><a href="{% url 'blog_content:tut_detail' pk=article.pk %}">{{article.Title}}</a></h2><br>
+
+        <h3>{{article.description}}</h3><br>
+        <p>Date Published: {{article.date_created}}</p>
+        <p>Author: {{article.author}}</p>
+        </div>
+    {% endfor %}
+
+{% endblock %}

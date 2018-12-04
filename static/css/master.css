@@ -1,0 +1,56 @@
+
+.main_h1{
+    text-align:center;
+    width=100%;
+
+}
+
+.img_center{
+
+    text-align:center;
+
+}
+
+.img_container img{
+
+    width:15%;
+    height:auto;
+    display:inline;
+
+
+
+
+}
+.list_tuts {
+
+
+
+opacity: 0.5;
+
+
+
+}
+
+.list_tuts:hover {
+
+opacity: 1;
+
+}
+
+
+img.image_link{
+
+    opacity:0.5;
+    padding-left:10px;
+    padding-right:10px;
+
+}
+
+img.image_link:hover{
+
+    opacity:1;
+
+}
+
+
+

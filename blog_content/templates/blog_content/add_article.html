@@ -1,0 +1,20 @@
+{% extends 'blog_content/base.html' %}
+{% load static %}
+
+{% block Title_Block %}Add News Article{% endblock %}
+{% load static %}
+{% block Body_Block %}
+<div class="col-md-8 col-md-offset-2 jumbotron" style="text-align:left">
+    <form method="post">
+        {% csrf_token %}
+    <h1>Add News Article:</h1>
+    {% for item in form %}
+        {{item.label_tag}}<br>
+        {{item}}<br><br>
+    {% endfor %}
+        <p>Please Note if your content is in html format please click the content html tick box to display it as such.</p><br>
+    <input type="submit" value="Submit"/>
+    </form>
+
+</div>
+{% endblock %}

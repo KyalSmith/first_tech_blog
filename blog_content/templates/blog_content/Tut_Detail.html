@@ -1,0 +1,110 @@
+{% extends 'blog_content/base.html' %}
+{% load static %}
+
+{% block Title_Block %}Python Tuts{% endblock %}
+
+{% block Body_Block %}
+    <div class="col-md-10 col-md-offset-1 jumbotron">
+        <div class="img_center"><h1>{{ tutorial.Title }}</h1></div>
+        <div style="text-align:center">
+            Date published: {{ tutorial.date_created }}<br>
+            Author: {{ tutorial.author }}<br>
+        </div>
+        <div class="img_center"><h2>{{ tutorial.description }}</h2></div>
+        {{ tutorial.Content|safe }}<br>
+
+
+        <br>
+
+        <div>
+        {% if user.is_authenticated %}
+            {% if already_liked %}
+                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color:grey" ></span><br>
+            {% else %}
+                <a id="like" href="javascript:void(0)"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a><br>
+            {% endif %}
+        {% else %}
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color:red" ></span>&nbsp;&nbsp;Please Signin to like<br>
+        {% endif %}
+
+        Likes: {{likes}}
+
+        </div>
+
+
+
+        <br><br>
+        <h3>Comments:</h3><hr>
+        {% for comment in comments %}
+            {% if comment.author.is_superuser %}
+
+                 <div style=" border-radius:5px; background-color:#ffffcc; width:40%;">
+                 <p>{{comment.author}}(Admin):&nbsp;&nbsp;&nbsp;&nbsp;{{comment.comment}}</p>
+                 <small>{{comment.date_commented}}</small>
+                 </div><br>
+
+            {% else %}
+
+                 <div style=" border-radius:5px; background-color:#ffffcc; width:40%;">
+                 <p>{{comment.author}}: {{comment.comment}}</p>
+                 <small>{{comment.date_commented}}</small>
+                 </div><br>
+
+            {% endif %}
+
+
+        {% endfor %}
+
+        {% if user.is_authenticated %}
+        <br><hr>
+
+        <label for="comment">Comment:</label><br>
+        <textarea id="comment" cols="50" rows="2" placeholder="Please enter Comment here"></textarea><br>
+        <input type="submit" id="submit_comment" value="Submit">
+
+        <script>
+
+        $(document).ready(function(){
+              $("#submit_comment").click(function(){
+            $.ajax({ type: "POST",
+                    url:"{% url 'blog_content:tut_comment' %}",
+                    data: { "title": "{{tutorial}}","comment":$("#comment").val(),csrfmiddlewaretoken:'{{csrf_token}}' },
+                    success:function(msg){
+                    console.log("Saved Comment");
+                    location.reload(true);
+
+                   }});
+                   });
+
+
+
+
+              $("#like").click(function(){
+            var tempScrollTop = $(window).scrollTop();
+            $.ajax({ type: "POST",
+                    url:"{% url 'blog_content:like_tutorial' %}",
+                    data: { "title": "{{tutorial}}",csrfmiddlewaretoken:'{{csrf_token}}' },
+                    success:function(msg){
+                    $(window).scrollTop(tempScrollTop);
+                    console.log("Added Like");
+                    location.reload(true);
+
+
+                   }});
+                   });
+             });
+
+
+
+
+
+        </script>
+        {% else %}
+
+        <p>Please Sign in to Comment :)</p>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}

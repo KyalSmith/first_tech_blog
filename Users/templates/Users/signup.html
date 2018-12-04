@@ -1,0 +1,28 @@
+{% extends 'Users/base.html' %}
+
+
+{% block Title_Block %}Sign Up{% endblock %}
+
+{% block Body_Block %}
+<div class="col-md-6 col-md-offset-3 jumbotron" style="text-align:left">
+    <h1>User Signup:</h1><br><br>
+    <form method="post">
+
+        {% csrf_token %}
+        {% for field in form %}
+                            <p>
+                                <div>{{ field.label_tag }}</div>
+                                <div>{{ field }}</div><br>
+                                {% if field.help_text %}
+                                    <div ><small>{{ field.help_text|safe }}</small></div>
+                                {% endif %}
+                                {% for error in field.errors %}
+                                    <p style="color: red">{{ error }}</p>
+                                {% endfor %}
+                            </p>
+        {% endfor %}
+        <div style="text-align:center"><input type="submit" value="Sign Up" class="btn btn-default"></div>
+
+    </form>
+</div>
+{% endblock %}
