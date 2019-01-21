@@ -25,7 +25,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'$^',List_News.as_view(),name="home"),
     url(r'^blog_content/',include("blog_content.urls")),
-    url(r'^Users/',include("Users.urls"))
+    url(r'^Users/',include("Users.urls")),
+    url(r'^api/',include('api.urls')),
 
 
 

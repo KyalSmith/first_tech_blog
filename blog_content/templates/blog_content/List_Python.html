@@ -7,7 +7,7 @@
     <div style="float:left;position:fixed"><img style="width:50%;height:auto;" src="/media/images/python.png"></div>
 
     {% for article in object_list %}
-        <div class="col-md-6 col-md-offset-3 jumbotron list_tuts">
+        <div class="col-sm-6 col-sm-offset-3 jumbotron list_tuts">
         <h2><a href="{% url 'blog_content:tut_detail' pk=article.pk %}">{{article.Title}}</a></h2><br>
 
         <h3>{{article.description}}</h3><br>

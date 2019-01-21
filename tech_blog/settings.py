@@ -24,9 +24,9 @@ blog_templates = os.path.join(BASE_DIR,"blog_content/templates")
 SECRET_KEY = 'h#9q(al_5jt15b)d3$(cq^z6-o8m4$702&xeue4wnqqttb#dez'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog_content',
     'Users',
+    'api',
+    'rest_framework',
 
 ]
 
@@ -51,7 +53,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
 
 ROOT_URLCONF = 'tech_blog.urls'
@@ -132,10 +133,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATIC_ROOT =  os.path.join(BASE_DIR,'static')
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
 
-    os.path.join(BASE_DIR,"static"),
+#    os.path.join(BASE_DIR,"static"),
 
 ]
 
